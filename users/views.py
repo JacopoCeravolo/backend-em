@@ -65,6 +65,9 @@ def getRoutes(request):
     return Response(routes)
 
 
+
+# return view for the redirection from the user's email of verification
+# get the usual parameter plus the token OTP and the uidb64 code
 class ActivateView(RedirectView):
 
     url = reverse_lazy('success')
@@ -86,3 +89,10 @@ class ActivateView(RedirectView):
             return super().get(request, uidb64, token)
         else:
             return render(request, 'users/activate_account_invalid.html')
+        
+
+class CheckEmailView(TemplateView):
+    template_name = 'users/check_email.html'
+
+class SuccessView(TemplateView):
+    template_name = 'users/success.html'
