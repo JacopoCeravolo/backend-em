@@ -16,7 +16,7 @@ from django.contrib.auth.views import LoginView
 from django.urls import reverse_lazy
 from django.utils.http import urlsafe_base64_decode
 from django.utils.encoding import force_str # force_text on older versions of Django
-from .tokens import token_generator
+from .utils import token_generator
 from .models import CustomUser
 
 # Create your views here.
@@ -38,9 +38,10 @@ class RegisterView(generics.CreateAPIView):
         # Get the user data from the request
         user_data = request.data
         user = CustomUser.objects.get(email=user_data['email'])
-
+        uid = user.pk
+        token = token_generator.make_token(user)
         # Generate the email body and subject
-        email_body = f"Hi {user.first_name},\n\nThank you for registering. Please verify your email by clicking the link below:\n\n<verification_link>\n\nBest regards,\nYour Company"
+        email_body = f"Hi {user.first_name},\n\nThank you for registering. Please verify your email by clicking the link below:\n\nhttp://localhost:8000/activate/{uid}/{token}\n\nBest regards,\nYour Company"
         email_subject = 'Verify your email'
 
         # Prepare the email data
@@ -49,11 +50,12 @@ class RegisterView(generics.CreateAPIView):
             'to_email': user.email,
             'email_subject': email_subject
         }
-
+        
         # Send the email
         Util.send_email(data=data)
 
         return response
+    
 
 @api_view(['GET'])
 def getRoutes(request):
