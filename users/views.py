@@ -7,7 +7,17 @@ from rest_framework.response import Response
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework import generics
 from rest_framework.permissions import AllowAny, IsAuthenticated
+#########################################################################
+from django.shortcuts import render
+from django.views.generic import CreateView, TemplateView, RedirectView
+from django.contrib.auth import login
+from django.contrib.auth.views import LoginView
 
+from django.urls import reverse_lazy
+from django.utils.http import urlsafe_base64_decode
+from django.utils.encoding import force_str # force_text on older versions of Django
+from .tokens import token_generator
+from .models import CustomUser
 
 # Create your views here.
 
@@ -53,3 +63,26 @@ def getRoutes(request):
         '/users/token/refresh/',
     ]
     return Response(routes)
+
+
+class ActivateView(RedirectView):
+
+    url = reverse_lazy('success')
+
+    # Custom get method
+    def get(self, request, uidb64, token):
+
+        try:
+            uid = force_str(urlsafe_base64_decode(uidb64))
+            user = CustomUser.objects.get(pk=uid)
+        except (TypeError, ValueError, OverflowError, CustomUser.DoesNotExist):
+            user = None
+
+        if user is not None and token_generator.check_token(user, token):
+            user.is_active = True
+            user.is_verified = True  # Set is_verified to True after successful activation  
+            user.save()
+            login(request, user)
+            return super().get(request, uidb64, token)
+        else:
+            return render(request, 'users/activate_account_invalid.html')
