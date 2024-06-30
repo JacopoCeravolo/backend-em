@@ -39,4 +39,3 @@ class RegisterSerializer(serializers.ModelSerializer):
     def validate_password(self, value):
         # Here you can add custom password validation if needed
         return value
-    

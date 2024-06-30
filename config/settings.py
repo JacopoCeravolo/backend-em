@@ -47,7 +47,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_simplejwt.token_blacklist',
     'corsheaders',
-    'crispy_bootstrap5',        # for the templates
+    'crispy_forms',
+    'crispy_bootstrap5',
 
     # Project apps
     'users',
