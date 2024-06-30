@@ -42,7 +42,7 @@ class RegisterView(generics.CreateAPIView):
         token = token_generator.make_token(user)
 
         # Generate the email body and subject
-        email_body = f"Hi {user.first_name},\n\nThank you for registering. Please verify your email by clicking the link below:\n\nhttp://localhost:8000/activate/{uid}/{token}\n\nBest regards,\nYour Company"
+        email_body = f"Hi {user.first_name},\n\nThank you for registering. Please verify your email by clicking the link below:\n\nhttp://localhost:8000/users/activate/{uid}/{token}\n\nBest regards,\nYour Company"
         email_subject = 'Verify your email'
 
         # Prepare the email data
