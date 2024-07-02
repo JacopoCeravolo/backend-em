@@ -1,5 +1,5 @@
 from .models import CustomUser
-from .serializers import MyTokenObtainPairSerializer, RegisterSerializer
+from .serializers import MyTokenObtainPairSerializer, RegisterSerializer, EmailConfirmationSerializer
 from .utils import Util
 
 from rest_framework.decorators import api_view
@@ -18,6 +18,8 @@ from django.utils.http import urlsafe_base64_decode
 from django.utils.encoding import force_str # force_text on older versions of Django
 from .tokens import token_generator
 from .models import CustomUser
+from rest_framework.views import APIView
+
 
 # Create your views here.
 
@@ -70,16 +72,20 @@ def getRoutes(request):
 
 # return view for the redirection from the user's email of verification
 # get the usual parameter plus the token OTP and the uidb64 code
-class ActivateView(RedirectView):
+class ActivateView(APIView):
 
     url = reverse_lazy('success')
+
+    permission_classes = (AllowAny,)
+    serializer_class = EmailConfirmationSerializer
 
     # Custom get method
     def get(self, request, uidb64, token):
 
+        print('entro nella view')
         try:
-            uid = force_str(urlsafe_base64_decode(uidb64))
-            user = CustomUser.objects.get(pk=uid)
+            #uid = force_str(urlsafe_base64_decode(uidb64))
+            user = CustomUser.objects.get(pk=uidb64)
         except (TypeError, ValueError, OverflowError, CustomUser.DoesNotExist):
             user = None
 
@@ -88,7 +94,7 @@ class ActivateView(RedirectView):
             user.is_verified = True  # Set is_verified to True after successful activation  
             user.save()
             login(request, user)
-            return super().get(request, uidb64, token)
+            return Response('Complimenti hai verificato il tuo account!')
         else:
             return render(request, 'users/activate_account_invalid.html')
         
