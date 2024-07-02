@@ -19,6 +19,9 @@ from django.utils.encoding import force_str # force_text on older versions of Dj
 from .tokens import token_generator
 from .models import CustomUser
 from rest_framework.views import APIView
+from django.utils.http import urlsafe_base64_encode
+from django.utils.encoding import force_bytes
+
 
 
 # Create your views here.
@@ -40,7 +43,7 @@ class RegisterView(generics.CreateAPIView):
         # Get the user data from the request
         user_data = request.data
         user = CustomUser.objects.get(email=user_data['email'])
-        uid = user.pk
+        uid = urlsafe_base64_encode(force_bytes(user.pk))
         token = token_generator.make_token(user)
 
         # Generate the email body and subject
@@ -84,8 +87,8 @@ class ActivateView(APIView):
 
         print('entro nella view')
         try:
-            #uid = force_str(urlsafe_base64_decode(uidb64))
-            user = CustomUser.objects.get(pk=uidb64)
+            uid = force_str(urlsafe_base64_decode(uidb64))
+            user = CustomUser.objects.get(pk=uid)
         except (TypeError, ValueError, OverflowError, CustomUser.DoesNotExist):
             user = None
 
