@@ -47,6 +47,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_simplejwt.token_blacklist',
     'corsheaders',
+    'crispy_forms',
+    'crispy_bootstrap5',
 
     # Project apps
     'users',
@@ -186,8 +188,12 @@ EMAIL_HOST = 'smtp.sendgrid.net'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'apikey' # Name for all the SenGrid accounts
-EMAIL_HOST_PASSWORD = env('SENDGRID_API_KEY')
+EMAIL_HOST_PASSWORD = ""
 
 # The email you'll be sending emails from
 DEFAULT_FROM_EMAIL = "jacopo@earthmates.de"
 LOGIN_REDIRECT_URL = 'success'
+
+# settings for the templates ineritance 
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"

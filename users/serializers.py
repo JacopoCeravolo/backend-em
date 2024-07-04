@@ -39,3 +39,9 @@ class RegisterSerializer(serializers.ModelSerializer):
     def validate_password(self, value):
         # Here you can add custom password validation if needed
         return value
+
+class EmailConfirmationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CustomUser
+        fields = ['email', 'password', 'first_name', 'last_name', 'is_verified', 'is_active']
+    

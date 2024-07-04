@@ -1,6 +1,6 @@
 from django.urls import path
 from . import views
-
+from.views import ActivateView
 
 
 from rest_framework_simplejwt.views import (
@@ -13,6 +13,7 @@ urlpatterns = [
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('register/', views.RegisterView.as_view(), name='auth_register'),
     path('', views.getRoutes),
-
-    
+    path('activate/<uidb64>/<token>/', ActivateView.as_view(), name="activate"),        # Return view from the email sended to the user
+    # path('check-email/', CheckEmailView.as_view(), name="check_email"),
+    # path('success/', SuccessView.as_view(), name="success"),
 ]
