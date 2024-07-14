@@ -3,15 +3,16 @@
 from django.core.management.base import BaseCommand
 from django.contrib.auth import get_user_model
 from api.models import Investor
+from users.models import CustomUser
 
-class Command(BaseCommand):
+class CommandInv(BaseCommand):
     help = 'Initialize an Investor instance with meaningful data'
 
     def handle(self, *args, **kwargs):
         # Assuming you have a user to assign to the investor
         user = get_user_model().objects.first()  # Get the first user (you should adjust this query according to your needs)
         
-        investor_data = [{
+        investor_data = {
             'user': user,
             'company_name': 'Example Company',
             'location': 'Example Location',
@@ -33,9 +34,37 @@ class Command(BaseCommand):
             'type_of_investment': 'Equity',
             'market': 'Global market for XYZ',
             'sdg': ['SDG 1', 'SDG 8']
-        },
+        }
+
+
+        
+        investor = Investor.objects.create(**investor_data)
+        self.stdout.write(self.style.SUCCESS(f'Successfully created Investor: {investor.company_name}'))
+
+
+# crea nel database locale gli utenti con le email nella lista 'users' tutti con password bar
+def users_samples():
+    users = [
+    'emily.jones@fakemail.com',
+    'michael.brown@mockemail.com',
+    'sarah.connor@fauxmail.com',
+    'david_lee@phantommail.com',
+    'laura.wilson@bogusmail.com',
+    'john.doe@fictionalemail.com',
+    'jane_doe@samplemail.com'
+    ]
+    for u in users:
+        user = CustomUser.objects.create_user(email = u, password = 'bar')
+    return users
+
+# inserisce il modello CustomUser in ogni dataset di un investitore
+# con questo codice vengono creati 7 nuovi utenti e vengono creati 8 investitori ognuno associato a un utente diverso 
+# (il primo è quello preimpostato 'jacopo@mail.com')
+def investor_test():
+    users = CustomUser.objects.all()
+    investors=[
         {
-            'user': 1,
+            'user': users[0],
             'company_name': 'Tech Angels',
             'location': 'San Francisco, CA',
             'industry': 'Technology',
@@ -58,7 +87,7 @@ class Command(BaseCommand):
             'sdg': ['SDG 1', 'SDG 8']
         },
         {
-            'user': 2,
+            'user': users[1],
             'company_name': 'Green Capital',
             'location': 'Austin, TX',
             'industry': 'Renewable Energy',
@@ -81,7 +110,7 @@ class Command(BaseCommand):
             'sdg': ['SDG 7', 'SDG 13']
         },
         {
-            'user': 3,
+            'user': users[2],
             'company_name': 'Health Ventures',
             'location': 'Boston, MA',
             'industry': 'Healthcare',
@@ -104,7 +133,7 @@ class Command(BaseCommand):
             'sdg': ['SDG 3', 'SDG 9']
         },
         {
-            'user': 4,
+            'user': users[3],
             'company_name': 'Eco Investors',
             'location': 'Seattle, WA',
             'industry': 'Sustainability',
@@ -127,7 +156,7 @@ class Command(BaseCommand):
             'sdg': ['SDG 12', 'SDG 13']
         },
         {
-            'user': 5,
+            'user': users[4],
             'company_name': 'Edu Invest',
             'location': 'New York, NY',
             'industry': 'Education',
@@ -150,7 +179,7 @@ class Command(BaseCommand):
             'sdg': ['SDG 4', 'SDG 9']
         },
         {
-            'user': 6,
+            'user': users[5],
             'company_name': 'Agri Fund',
             'location': 'Des Moines, IA',
             'industry': 'Agriculture',
@@ -173,7 +202,7 @@ class Command(BaseCommand):
             'sdg': ['SDG 2', 'SDG 9']
         },
         {
-            'user': 7,
+            'user': users[6],
             'company_name': 'Smart Home Ventures',
             'location': 'San Jose, CA',
             'industry': 'Smart Home Technology',
@@ -196,7 +225,7 @@ class Command(BaseCommand):
             'sdg': ['SDG 9', 'SDG 11']
         },
         {
-            'user': 8,
+            'user': users[7],
             'company_name': 'BioTech Ventures',
             'location': 'San Diego, CA',
             'industry': 'Biotechnology',
@@ -219,6 +248,24 @@ class Command(BaseCommand):
             'sdg': ['SDG 3', 'SDG 9']
         }
     ]
-        
-        investor = Investor.objects.create(**investor_data)
-        self.stdout.write(self.style.SUCCESS(f'Successfully created Investor: {investor.company_name}'))
+    return investors
+
+
+
+# crea gli investitori, prende come argomento il risultato di investor_test()
+def bind_inv_users(investors):
+
+    for i in investors:
+       inv = Investor.objects.create(**i) 
+       print(inv.user)
+
+
+# se si esegue: python initialize_investors.py da shell lo script crea tutto
+# per controllare i risultati bisogna eseguire:
+# python3 manage.py shell 
+# from api.models import Investor (dentro la shell)
+# from users.models import CustomUser (dentro la shell)
+# Investor.objects.all() (dentro la shell)
+users = users_samples()
+investors = investor_test()
+bind_inv_users(investors)

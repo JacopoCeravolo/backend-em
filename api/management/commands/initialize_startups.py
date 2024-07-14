@@ -4,7 +4,8 @@ from django.utils.timezone import now
 from django.contrib.auth import get_user_model
 from api.models import Startup
 
-class Command(BaseCommand):
+#Funzionante, associa le starup alla variabile 'user'
+class CommandStp(BaseCommand):
     help = 'Initialize startup models with meaningful values'
 
     def handle(self, *args, **options):
@@ -55,7 +56,6 @@ class Command(BaseCommand):
             # Add 4 more startup dictionaries here with similar structure
             # ...
             {
-                "user": 2,
                 "name": "Green Energy Solutions",
                 "code": "GES002",
                 "location": "Austin, TX",
@@ -91,7 +91,6 @@ class Command(BaseCommand):
                 "sdg": {"goal7": "Affordable and Clean Energy", "goal13": "Climate Action"},
             },
             {
-                "user": 3,
                 "name": "HealthTech Pioneers",
                 "code": "HTP003",
                 "location": "Boston, MA",
@@ -127,7 +126,6 @@ class Command(BaseCommand):
                 "sdg": {"goal3": "Good Health and Well-being", "goal9": "Industry, Innovation, and Infrastructure"},
             },
             {
-                "user": 4,
                 "name": "Eco-Friendly Packaging",
                 "code": "EFP004",
                 "location": "Seattle, WA",
@@ -163,7 +161,6 @@ class Command(BaseCommand):
                 "sdg": {"goal12": "Responsible Consumption and Production", "goal13": "Climate Action"},
             },
             {
-                "user": 5,
                 "name": "FinTech Innovators",
                 "code": "FI005",
                 "location": "New York, NY",
@@ -199,7 +196,6 @@ class Command(BaseCommand):
                 "sdg": {"goal8": "Decent Work and Economic Growth", "goal9": "Industry, Innovation, and Infrastructure"},
             },
             {
-                "user": 6,
                 "name": "EdTech Revolution",
                 "code": "ET006",
                 "location": "Los Angeles, CA",
@@ -235,7 +231,6 @@ class Command(BaseCommand):
                 "sdg": {"goal4": "Quality Education", "goal9": "Industry, Innovation, and Infrastructure"},
             },
             {
-                "user": 7,
                 "name": "AgriTech Innovations",
                 "code": "ATI007",
                 "location": "Des Moines, IA",
@@ -271,7 +266,6 @@ class Command(BaseCommand):
                 "sdg": {"goal2": "Zero Hunger", "goal9": "Industry, Innovation, and Infrastructure"},
             },
             {
-                "user": 8,
                 "name": "Smart Home Solutions",
                 "code": "SHS008",
                 "location": "San Jose, CA",
@@ -307,7 +301,6 @@ class Command(BaseCommand):
                 "sdg": {"goal9": "Industry, Innovation, and Infrastructure", "goal11": "Sustainable Cities and Communities"},
             },
             {
-                "user": 9,
                 "name": "BioTech Advances",
                 "code": "BTA009",
                 "location": "San Diego, CA",
@@ -343,7 +336,6 @@ class Command(BaseCommand):
                 "sdg": {"goal3": "Good Health and Well-being", "goal9": "Industry, Innovation, and Infrastructure"},
             },
             {
-                "user": 10,
                 "name": "Cyber Security Experts",
                 "code": "CSE010",
                 "location": "Washington, D.C.",
