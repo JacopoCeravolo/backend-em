@@ -5,89 +5,261 @@ from django.contrib.auth import get_user_model
 from api.models import Investor
 from users.models import CustomUser
 
-class CommandInv(BaseCommand):
+class Command(BaseCommand):
     help = 'Initialize an Investor instance with meaningful data'
 
     def handle(self, *args, **kwargs):
         # Assuming you have a user to assign to the investor
-        user = get_user_model().objects.first()  # Get the first user (you should adjust this query according to your needs)
+        users = get_user_model().objects.all()  # Get the first user (you should adjust this query according to your needs)
         
-        investor_data = {
-            'user': user,
-            'company_name': 'Example Company',
-            'location': 'Example Location',
-            'industry': 'Example Industry',
-            'type_of_business': 'Example Business Type',
-            'linkedin': 'https://linkedin.com/example',
-            'twitter': 'https://twitter.com/example',
-            'description': 'Example description about the company',
-            'mission': 'Example mission statement',
-            'capital': '$10,000,000',
-            'stage': ['Seed', 'Series A'],
-            'impact_value': 4.5,
-            'team_values': ['Innovation', 'Integrity', 'Diversity'],
-            'team_motives': ['Growth', 'Impact', 'Excellence'],
-            'languages': ['English', 'Spanish'],
-            'investor_expertise': ['Technology', 'Healthcare'],
-            'investor_value': ['Sustainability', 'Impact'],
-            'exit_strategy': 'IPO',
-            'type_of_investment': 'Equity',
-            'market': 'Global market for XYZ',
-            'sdg': ['SDG 1', 'SDG 8']
-        }
-
-
-        
-        investor = Investor.objects.create(**investor_data)
-        self.stdout.write(self.style.SUCCESS(f'Successfully created Investor: {investor.company_name}'))
-
-
-# crea nel database locale gli utenti con le email nella lista 'users' tutti con password bar
-def users_samples():
-    users = [
-    'emily.jones@fakemail.com',
-    'michael.brown@mockemail.com',
-    'sarah.connor@fauxmail.com',
-    'david_lee@phantommail.com',
-    'laura.wilson@bogusmail.com',
-    'john.doe@fictionalemail.com',
-    'jane_doe@samplemail.com'
-    ]
-    for u in users:
-        user = CustomUser.objects.create_user(email = u, password = 'bar')
-    return users
-
-# inserisce il modello CustomUser in ogni dataset di un investitore
-# con questo codice vengono creati 7 nuovi utenti e vengono creati 8 investitori ognuno associato a un utente diverso 
-# (il primo è quello preimpostato 'jacopo@mail.com')
-def investor_test():
-    users = CustomUser.objects.all()
-    investors=[
+        investor_data = investors=[
         {
-            'user': users[0],
-            'company_name': 'Tech Angels',
+            'company_name': 'Eco Ventures',
             'location': 'San Francisco, CA',
-            'industry': 'Technology',
-            'type_of_business': 'Venture Capital',
-            'linkedin': 'https://linkedin.com/company/techangels',
-            'twitter': 'https://twitter.com/techangels',
-            'description': 'Investing in cutting-edge tech startups.',
-            'mission': 'To support technological innovation.',
-            'capital': '$10,000,000',
-            'stage': ['Seed', 'Series A'],
-            'impact_value': 4.5,
-            'team_values': ['Innovation', 'Integrity', 'Diversity'],
-            'team_motives': ['Growth', 'Impact', 'Excellence'],
+            'industry': 'Real Estate',
+            'type_of_business': 'Investment Group',
+            'linkedin': 'https://linkedin.com/company/ecovenures',
+            'twitter': 'https://twitter.com/ecovenures',
+            'description': 'Investing in water saving technologies and businesses.',
+            'mission': 'To alleviate global water scarcity through smart investments.',
+            'capital': 20000000,
+            'stage':  'Series A',
+            'impact_value': 9.0,
+            'team_values': ['Sustainability', 'Efficiency', 'Innovation'],
+            'team_motives': ['Resource Management', 'Tech Advancement', 'Sustainability'],
             'languages': ['English', 'Spanish'],
-            'investor_expertise': ['Technology', 'Healthcare'],
-            'investor_value': ['Sustainability', 'Impact'],
+            'investor_expertise': ['Water Management', 'Environmental Tech'],
+            'investor_value': ['Sustainability', 'Long-term Gains'],
             'exit_strategy': 'IPO',
             'type_of_investment': 'Equity',
-            'market': 'Global technology market',
-            'sdg': ['SDG 1', 'SDG 8']
+            'market': 'Global water conservation sector',
+            'sdg': {
+                'SDG 6': 'Clean Water and Sanitation',
+                'SDG 9': 'Industry, Innovation, and Infrastructure'
+            }
         },
         {
-            'user': users[1],
+            'company_name': 'Health Impact Partners',
+            'location': 'Boston, MA',
+            'industry': 'Healthcare',
+            'type_of_business': 'Private Equity',
+            'linkedin': 'https://linkedin.com/company/healthimpactpartners',
+            'twitter': 'https://twitter.com/healthimpact',
+            'description': 'Dedicated to improving healthcare access worldwide.',
+            'mission': 'To support healthcare initiatives that provide scalable solutions.',
+            'capital': 50000000,
+            'stage': ['Series B', 'Series C'],
+            'impact_value': 5.0,
+            'team_values': ['Compassion', 'Innovation', 'Quality'],
+            'team_motives': ['Health Improvement', 'Access to Care', 'Innovation'],
+            'languages': ['English', 'German', 'French'],
+            'investor_expertise': ['Healthcare Technology', 'Pharmaceuticals'],
+            'investor_value': ['Social Impact', 'Financial Returns'],
+            'exit_strategy': 'Merger',
+            'type_of_investment': 'Debt and Equity',
+            'market': 'Global healthcare market',
+            'sdg': {
+                'SDG 3': 'Good Health and Well-being'
+            }
+        },
+        {
+            'company_name': 'Clean Tech Capital',
+            'location': 'Berlin, Germany',
+            'industry': 'Clean Technology',
+            'type_of_business': 'Venture Capital',
+            'linkedin': 'https://linkedin.com/company/cleantechcapital',
+            'twitter': 'https://twitter.com/cleantechcap',
+            'description': 'Investor in innovative clean technology ventures.',
+            'mission': 'To accelerate the transition to a sustainable economy.',
+            'capital': 25000000,
+            'stage': ['Series A', 'Series B'],
+            'impact_value': 4.8,
+            'team_values': ['Efficiency', 'Sustainability', 'Ethics'],
+            'team_motives': ['Climate Change', 'Tech Innovation', 'Ethical Investing'],
+            'languages': ['English', 'Dutch'],
+            'investor_expertise': ['Renewable Energy', 'Eco-Friendly Products'],
+            'investor_value': ['Environmental Impact', 'Innovation'],
+            'exit_strategy': 'Sale to Strategic Investor',
+            'type_of_investment': 'Equity',
+            'market': 'European clean tech market',
+            'sdg': {
+                'SDG 7': 'Affordable and Clean Energy',
+                'SDG 13': 'Climate Action'
+            }
+        },
+        {
+            'company_name': 'Urban Green',
+            'location': 'London, UK',
+            'industry': 'Urban Development',
+            'type_of_business': 'Real Estate Investment',
+            'linkedin': 'https://linkedin.com/company/urbangreen',
+            'twitter': 'https://twitter.com/urbangreen',
+            'description': 'Investing in sustainable urban development projects.',
+            'mission': 'To create eco-friendly, livable urban spaces.',
+            'capital': 30000000,
+            'stage': ['Series C', 'Growth'],
+            'impact_value': 4.7,
+            'team_values': ['Community', 'Sustainability', 'Design'],
+            'team_motives': ['Urban Regeneration', 'Sustainable Living', 'Community Building'],
+            'languages': ['English', 'Italian'],
+            'investor_expertise': ['Sustainable Construction', 'Green Buildings'],
+            'investor_value': ['Community Impact', 'Stable Returns'],
+            'exit_strategy': 'Long-term Hold',
+            'type_of_investment': 'Equity',
+            'market': 'Sustainable urban projects in Europe',
+            'sdg': {
+                'SDG 11': 'Sustainable Cities and Communities',
+                'SDG 12': 'Responsible Consumption and Production'
+            }
+        },
+        {
+            'company_name': 'AgriGrowth Ventures',
+            'location': 'Nairobi, Kenya',
+            'industry': 'Agriculture',
+            'type_of_business': 'Impact Investing',
+            'linkedin': 'https://linkedin.com/company/agrigrowthventures',
+            'twitter': 'https://twitter.com/agrigrowth',
+            'description': 'Investor in agricultural innovations to improve food security.',
+            'mission': 'To revolutionize agriculture in Africa through sustainable practices.',
+            'capital': 22000000,
+            'stage': ['Seed', 'Series A'],
+            'impact_value': 4.9,
+            'team_values': ['Innovation', 'Sustainability', 'Community'],
+            'team_motives': ['Food Security', 'Innovative Farming', 'Community Support'],
+            'languages': ['English', 'Swahili'],
+            'investor_expertise': ['Sustainable Agriculture', 'Agri-tech'],
+            'investor_value': ['Community Development', 'High Returns'],
+            'exit_strategy': 'Acquisition by a Major Corporation',
+            'type_of_investment': 'Equity and Grants',
+            'market': 'Sub-Saharan agricultural sector',
+            'sdg': {
+                'SDG 2': 'Zero Hunger',
+                'SDG 15': 'Life on Land'
+            }
+        },
+                {
+            'company_name': 'Blue Ocean Equity',
+            'location': 'Sydney, Australia',
+            'industry': 'Marine Conservation',
+            'type_of_business': 'Equity Fund',
+            'linkedin': 'https://linkedin.com/company/blueoceanequity',
+            'twitter': 'https://twitter.com/blueocean',
+            'description': 'Funding innovations in marine biodiversity and conservation.',
+            'mission': 'To protect and sustainably manage marine resources.',
+            'capital': 18000000,
+            'stage': ['Series B', 'Series C'],
+            'impact_value': 4.6,
+            'team_values': ['Conservation', 'Sustainability', 'Innovation'],
+            'team_motives': ['Marine Protection', 'Sustainable Fisheries', 'Biodiversity'],
+            'languages': ['English', 'Japanese'],
+            'investor_expertise': ['Marine Technology', 'Conservation Strategies'],
+            'investor_value': ['Environmental Preservation', 'Sustainable Profit'],
+            'exit_strategy': 'Public Offering',
+            'type_of_investment': 'Equity',
+            'market': 'Global marine conservation efforts',
+            'sdg': {
+                'SDG 14': 'Life Below Water'
+            }
+        },
+        {
+            'company_name': 'Future Education Fund',
+            'location': 'Toronto, Canada',
+            'industry': 'Education Technology',
+            'type_of_business': 'Venture Fund',
+            'linkedin': 'https://linkedin.com/company/futureeducationfund',
+            'twitter': 'https://twitter.com/futureedufund',
+            'description': 'Investing in technologies and platforms that democratize education globally.',
+            'mission': 'To make quality education accessible to all.',
+            'capital': 12000000,
+            'stage': ['Seed', 'Series A'],
+            'impact_value': 4.3,
+            'team_values': ['Access', 'Quality', 'Innovation'],
+            'team_motives': ['Education Access', 'Technology in Learning', 'Global Reach'],
+            'languages': ['English', 'Mandarin'],
+            'investor_expertise': ['EdTech', 'Online Learning Platforms'],
+            'investor_value': ['Social Good', 'Growth Potential'],
+            'exit_strategy': 'Acquisition by Global Tech Company',
+            'type_of_investment': 'Equity',
+            'market': 'Global education market',
+            'sdg': {
+                'SDG 4': 'Quality Education'
+            }
+        },
+        {
+            'company_name': 'Green Building Investors',
+            'location': 'Amsterdam, Netherlands',
+            'industry': 'Real Estate',
+            'type_of_business': 'Investment Group',
+            'linkedin': 'https://linkedin.com/company/greenbuildinginvestors',
+            'twitter': 'https://twitter.com/greenbuildinvest',
+            'description': 'Investing in high-efficiency green buildings across Europe.',
+            'mission': 'To lead the shift towards sustainable construction and property management.',
+            'capital': 35000000,
+            'stage': 'Series A',
+            'impact_value': 9.0,
+            'team_values': ['integrity', 'Durability', 'Design'],
+            'team_motives': ['Energy Efficiency', 'Sustainable Materials', 'Architectural Innovation'],
+            'languages': ['English', 'German', 'Dutch'],
+            'investor_expertise': ['Sustainable Building Projects', 'Energy Efficiency'],
+            'investor_value': ['Long-term Sustainability', 'Profitability'],
+            'exit_strategy': 'Real Estate Investment Trust (REIT) Listing',
+            'type_of_investment': 'Equity',
+            'market': 'European sustainable real estate market',
+            'sdg': {
+                'SDG 11': 'Sustainable Cities and Communities',
+                'SDG 13': 'Climate Action'
+            }
+        },
+        {
+            'company_name': 'NextGen Energy Partners',
+            'location': 'Denver, CO',
+            'industry': 'Energy Storage',
+            'type_of_business': 'Venture Capital',
+            'linkedin': 'https://linkedin.com/company/nextgenenergypartners',
+            'twitter': 'https://twitter.com/nextgenenergy',
+            'description': 'Investing in next-generation energy storage solutions.',
+            'mission': 'To enhance global energy security and efficiency.',
+            'capital': 20000000,
+            'stage': ['Series A', 'Series B'],
+            'impact_value': 4.5,
+            'team_values': ['Innovation', 'Sustainability', 'Efficiency'],
+            'team_motives': ['Energy Storage', 'Technological Advancement', 'Market Leadership'],
+            'languages': ['English', 'Spanish'],
+            'investor_expertise': ['Energy Storage Technologies', 'Renewable Integration'],
+            'investor_value': ['Technology Leadership', 'High Returns'],
+            'exit_strategy': 'Strategic Sale',
+            'type_of_investment': 'Equity',
+            'market': 'Global energy storage and renewable integration market',
+            'sdg': {
+                'SDG 7': 'Affordable and Clean Energy',
+                'SDG 9': 'Industry, Innovation, and Infrastructure'
+            }
+        },
+        {
+            'company_name': 'Global Health Innovations',
+            'location': 'Geneva, Switzerland',
+            'industry': 'Healthcare',
+            'type_of_business': 'Venture Capital',
+            'linkedin': 'https://linkedin.com/company/globalhealthinnovations',
+            'twitter': 'https://twitter.com/globalhealthinnov',
+            'description': 'Funding innovative health solutions that have a global impact.',
+            'mission': 'To improve global health standards through innovation.',
+            'capital': 40000000,
+            'stage': ['Series B', 'Series C'],
+            'impact_value': 4.9,
+            'team_values': ['Innovation', 'Quality', 'Access'],
+            'team_motives': ['Global Health', 'Medical Technology', 'Accessible Healthcare'],
+            'languages': ['English', 'French', 'Arabic'],
+            'investor_expertise': ['Public Health Innovations', 'Healthcare Technology'],
+            'investor_value': ['Impact', 'Financial Returns'],
+            'exit_strategy': 'IPO',
+            'type_of_investment': 'Equity',
+            'market': 'Global health technology market',
+            'sdg': {
+                'SDG 3': 'Good Health and Well-being'
+            }
+        },
+        {
             'company_name': 'Green Capital',
             'location': 'Austin, TX',
             'industry': 'Renewable Energy',
@@ -96,7 +268,7 @@ def investor_test():
             'twitter': 'https://twitter.com/greencapital',
             'description': 'Focusing on sustainable energy investments.',
             'mission': 'To promote renewable energy solutions.',
-            'capital': '$15,000,000',
+            'capital': 15000000,
             'stage': ['Series A', 'Series B'],
             'impact_value': 5.0,
             'team_values': ['Sustainability', 'Innovation', 'Transparency'],
@@ -107,165 +279,36 @@ def investor_test():
             'exit_strategy': 'Acquisition',
             'type_of_investment': 'Debt',
             'market': 'Global renewable energy market',
-            'sdg': ['SDG 7', 'SDG 13']
-        },
-        {
-            'user': users[2],
-            'company_name': 'Health Ventures',
-            'location': 'Boston, MA',
-            'industry': 'Healthcare',
-            'type_of_business': 'Investment',
-            'linkedin': 'https://linkedin.com/company/healthventures',
-            'twitter': 'https://twitter.com/healthventures',
-            'description': 'Investing in innovative healthcare solutions.',
-            'mission': 'To improve global health through technology.',
-            'capital': '$20,000,000',
-            'stage': ['Seed', 'Series A'],
-            'impact_value': 4.8,
-            'team_values': ['Integrity', 'Innovation', 'Compassion'],
-            'team_motives': ['Patient Care', 'Growth', 'Innovation'],
-            'languages': ['English', 'Mandarin'],
-            'investor_expertise': ['Healthcare', 'Biotechnology'],
-            'investor_value': ['Mentorship', 'Funding'],
-            'exit_strategy': 'IPO',
-            'type_of_investment': 'Equity',
-            'market': 'Global healthcare market',
-            'sdg': ['SDG 3', 'SDG 9']
-        },
-        {
-            'user': users[3],
-            'company_name': 'Eco Investors',
-            'location': 'Seattle, WA',
-            'industry': 'Sustainability',
-            'type_of_business': 'Investment',
-            'linkedin': 'https://linkedin.com/company/ecoinvestors',
-            'twitter': 'https://twitter.com/ecoinvestors',
-            'description': 'Supporting eco-friendly startups.',
-            'mission': 'To reduce environmental impact.',
-            'capital': '$12,000,000',
-            'stage': ['Seed', 'Series B'],
-            'impact_value': 5.2,
-            'team_values': ['Sustainability', 'Ethics', 'Innovation'],
-            'team_motives': ['Environmental Impact', 'Growth', 'Success'],
-            'languages': ['English', 'Spanish'],
-            'investor_expertise': ['Sustainability', 'Manufacturing'],
-            'investor_value': ['Impact', 'Returns'],
-            'exit_strategy': 'Acquisition',
-            'type_of_investment': 'Equity',
-            'market': 'Global sustainability market',
-            'sdg': ['SDG 12', 'SDG 13']
-        },
-        {
-            'user': users[4],
-            'company_name': 'Edu Invest',
-            'location': 'New York, NY',
-            'industry': 'Education',
-            'type_of_business': 'Venture Capital',
-            'linkedin': 'https://linkedin.com/company/eduinvest',
-            'twitter': 'https://twitter.com/eduinvest',
-            'description': 'Funding innovative educational technologies.',
-            'mission': 'To transform education through technology.',
-            'capital': '$25,000,000',
-            'stage': ['Seed', 'Series A'],
-            'impact_value': 4.9,
-            'team_values': ['Education', 'Innovation', 'Access'],
-            'team_motives': ['Learning', 'Growth', 'Excellence'],
-            'languages': ['English', 'French'],
-            'investor_expertise': ['Education', 'Technology'],
-            'investor_value': ['Mentorship', 'Funding'],
-            'exit_strategy': 'IPO',
-            'type_of_investment': 'Equity',
-            'market': 'Global education market',
-            'sdg': ['SDG 4', 'SDG 9']
-        },
-        {
-            'user': users[5],
-            'company_name': 'Agri Fund',
-            'location': 'Des Moines, IA',
-            'industry': 'Agriculture',
-            'type_of_business': 'Investment',
-            'linkedin': 'https://linkedin.com/company/agrifund',
-            'twitter': 'https://twitter.com/agrifund',
-            'description': 'Investing in agricultural innovation.',
-            'mission': 'To enhance agricultural productivity.',
-            'capital': '$18,000,000',
-            'stage': ['Seed', 'Series A'],
-            'impact_value': 4.7,
-            'team_values': ['Sustainability', 'Innovation', 'Growth'],
-            'team_motives': ['Productivity', 'Growth', 'Success'],
-            'languages': ['English', 'Spanish'],
-            'investor_expertise': ['Agriculture', 'Technology'],
-            'investor_value': ['Funding', 'Mentorship'],
-            'exit_strategy': 'Acquisition',
-            'type_of_investment': 'Equity',
-            'market': 'Global agriculture market',
-            'sdg': ['SDG 2', 'SDG 9']
-        },
-        {
-            'user': users[6],
-            'company_name': 'Smart Home Ventures',
-            'location': 'San Jose, CA',
-            'industry': 'Smart Home Technology',
-            'type_of_business': 'Investment',
-            'linkedin': 'https://linkedin.com/company/smarthomeventures',
-            'twitter': 'https://twitter.com/smarthomeventures',
-            'description': 'Investing in smart home technology.',
-            'mission': 'To make homes smarter and more efficient.',
-            'capital': '$22,000,000',
-            'stage': ['Seed', 'Series A'],
-            'impact_value': 4.6,
-            'team_values': ['Innovation', 'Quality', 'Efficiency'],
-            'team_motives': ['Growth', 'Success', 'Impact'],
-            'languages': ['English', 'German'],
-            'investor_expertise': ['Technology', 'Business'],
-            'investor_value': ['Funding', 'Mentorship'],
-            'exit_strategy': 'Acquisition',
-            'type_of_investment': 'Equity',
-            'market': 'Global smart home market',
-            'sdg': ['SDG 9', 'SDG 11']
-        },
-        {
-            'user': users[7],
-            'company_name': 'BioTech Ventures',
-            'location': 'San Diego, CA',
-            'industry': 'Biotechnology',
-            'type_of_business': 'Investment',
-            'linkedin': 'https://linkedin.com/company/biotechventures',
-            'twitter': 'https://twitter.com/biotechventures',
-            'description': 'Supporting biotech startups.',
-            'mission': 'To advance biotech research.',
-            'capital': '$30,000,000',
-            'stage': ['Seed', 'Series A'],
-            'impact_value': 5.0,
-            'team_values': ['Innovation', 'Integrity', 'Excellence'],
-            'team_motives': ['Growth', 'Success', 'Impact'],
-            'languages': ['English', 'Japanese'],
-            'investor_expertise': ['Biotechnology', 'Healthcare'],
-            'investor_value': ['Funding', 'Mentorship'],
-            'exit_strategy': 'IPO',
-            'type_of_investment': 'Equity',
-            'market': 'Global biotechnology market',
-            'sdg': ['SDG 3', 'SDG 9']
+            'sdg': {
+                'SDG 7': 'Affordable and Clean Energy',
+                'SDG 13': 'Climate Action'
+            }
         }
     ]
-    return investors
+    
+        for i in range(10):
+            Investor.objects.create(
+                        user=users[i],
+                        **investor_data[i]
+                    )
+
+        
+        self.stdout.write(self.style.SUCCESS('Successfully created Investors'))
 
 
-
-# crea gli investitori, prende come argomento il risultato di investor_test()
-def bind_inv_users(investors):
-
-    for i in investors:
-       inv = Investor.objects.create(**i) 
-       print(inv.user)
-
-
-# se si esegue: python initialize_investors.py da shell lo script crea tutto
-# per controllare i risultati bisogna eseguire:
-# python3 manage.py shell 
-# from api.models import Investor (dentro la shell)
-# from users.models import CustomUser (dentro la shell)
-# Investor.objects.all() (dentro la shell)
-users = users_samples()
-investors = investor_test()
-bind_inv_users(investors)
+# crea nel database locale gli utenti con le email nella lista 'users' tutti con password bar
+def users_samples():
+    users = ['alexi@mail.com',
+            'brielle@mail.com', 
+            'caden@mail.com', 
+            'daria@mail.com', 
+            'elton@mail.com', 
+            'fiona@mail.com', 
+            'gareth@mail.com', 
+            'helena@mail.com', 
+            'ivan@mail.com', 
+            'juliet@mail.com'
+        ]
+    for u in users:
+        CustomUser.objects.create_user(email = u, password = 'bar')
+    return users

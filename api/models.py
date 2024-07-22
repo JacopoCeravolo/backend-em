@@ -3,7 +3,7 @@ from django.db import models
 
 class Startup(models.Model):
     # User information
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
     # Company Information
     name = models.CharField(max_length=255)
@@ -43,8 +43,8 @@ class Startup(models.Model):
     team_languages = models.JSONField()
     
     # Preferences Information
-    investore_expertise = models.JSONField()
-    investore_expectations = models.JSONField()
+    investor_expertise = models.JSONField()
+    investor_expectations = models.JSONField()
     exit_strategy = models.CharField(max_length=255)
     type_of_investment = models.CharField(max_length=255)
 
@@ -59,7 +59,7 @@ class Startup(models.Model):
 
 class Investor(models.Model):
     # User information
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
     # General Information
     company_name = models.CharField(max_length=255)
@@ -97,3 +97,8 @@ class Investor(models.Model):
 
     def __str__(self):
         return self.company_name
+    
+    def get_user(self):
+        return self.user.get_email()
+    
+
