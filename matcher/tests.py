@@ -43,7 +43,6 @@ def matching():
                     score = 50
                     if len(common_values)>=3:
                         score+= 10
-                    score = 50
                     if startup.financial_tables:
                         score +=5
                     motives_stp = set(startup.team_motives)
@@ -58,9 +57,12 @@ def matching():
                         score += 5
                         if len(common_expertice)>3:
                             score +=5
+                    founds_use_stp = set(startup.use_of_funds.keys())
+                    if len(expertice_inv.intersection(founds_use_stp))>0:
+                        score += 5
                     matches.append((startup, investor, score))
 
 
-# mancano i check su expectations, instrument, use of founds
-                    
+# mancano i check su expectations, instrument,
+# instrument hard on series A and soft on series B and lower
                     
