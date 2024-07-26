@@ -86,6 +86,7 @@ class Investor(models.Model):
     
     # Preferences Information
     investor_expertise = models.JSONField()
+    investor_offering = models.JSONField(default='')
     investor_value = models.JSONField()
     exit_strategy = models.CharField(max_length=255)
     type_of_investment = models.CharField(max_length=255)

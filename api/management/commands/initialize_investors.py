@@ -11,24 +11,25 @@ class Command(BaseCommand):
     def handle(self, *args, **kwargs):
         # Assuming you have a user to assign to the investor
         users = get_user_model().objects.all()  # Get the first user (you should adjust this query according to your needs)
-        
-        investor_data = investors=[
+
+        investor_data = [
         {
             'company_name': 'Eco Ventures',
             'location': 'San Francisco, CA',
             'industry': 'Real Estate',
-            'type_of_business': 'B2B',
+            'type_of_business': 'B2B', # B2B or B2C 
             'linkedin': 'https://linkedin.com/company/ecovenures',
             'twitter': 'https://twitter.com/ecovenures',
             'description': 'Investing in water saving technologies and businesses.',
             'mission': 'To alleviate global water scarcity through smart investments.',
             'capital': 20000000,
-            'stage':  ['Series A', 'Pre Seed'],
+            'stage':  ['Series A', 'Pre Seed'], # stage of the startup: Series A, Series B, Series C, Seed, Pre Seed, Bridge
             'impact_value': 9.0,
             'team_values': ['Sustainability', 'Efficiency', 'Innovation'],
             'team_motives': ['Resource Management', 'Tech Advancement', 'Sustainability'],
             'languages': ['English', 'Spanish'],
             'investor_expertise': ['Water Management', 'HR'],
+            'investor_offering':['Has a big network'], 
             'investor_value': ['Sustainability', 'Long-term Gains'],
             'exit_strategy': 'IPO',
             'type_of_investment': 'Equity',
@@ -36,7 +37,7 @@ class Command(BaseCommand):
             'sdg': {
                 'SDG 6': 'Clean Water and Sanitation',
                 'SDG 9': 'Industry, Innovation, and Infrastructure'
-            }
+            } # sdg must to be n the sdg goals
         },
         {
             'company_name': 'Health Impact Partners',
@@ -283,7 +284,7 @@ class Command(BaseCommand):
                 'SDG 7': 'Affordable and Clean Energy',
                 'SDG 13': 'Climate Action'
             }
-        }
+        }      
     ]
     
         for i in range(10):
@@ -298,16 +299,17 @@ class Command(BaseCommand):
 
 # crea nel database locale gli utenti con le email nella lista 'users' tutti con password bar
 def users_samples():
-    users = ['alexi@mail.com',
-            'brielle@mail.com', 
-            'caden@mail.com', 
-            'daria@mail.com', 
-            'elton@mail.com', 
-            'fiona@mail.com', 
-            'gareth@mail.com', 
-            'helena@mail.com', 
-            'ivan@mail.com', 
-            'juliet@mail.com'
+    users = [
+            'alexi@mail.com1',
+            'brielle@mail.com1', 
+            'caden@mail.com1', 
+            'daria@mail.com1', 
+            'elton@mail.com1', 
+            'fiona@mail.com1', 
+            'gareth@mail.com1', 
+            'helena@mail.com1', 
+            'ivan@mail.com1', 
+            'juliet@mail.com1'
         ]
     for u in users:
         CustomUser.objects.create_user(email = u, password = 'bar')
