@@ -91,5 +91,5 @@ class Command(BaseCommand):
                     matches.append((startup, investor, score))
         print(f'\n.------MATCHES NUMBER: {len(matches)} ------.\n\n {matches}')
 
-        self.stdout.write(self.style.SUCCESS('Successfully created Investors'))
+        self.stdout.write(self.style.SUCCESS('Test succesfully completed!'))
         
