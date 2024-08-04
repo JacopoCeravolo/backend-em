@@ -1,4 +1,11 @@
-'industry', 'type_of_business', 'type_of_investment', sdg, capital, impact_value, lingue, stage, team_values
+
+INVESTOR MAPPING VALUES 
+
+
+
+
+
+'industry' same, 'type_of_business' same, 'type_of_investment' same , sdg same, capital same, impact_value same, lingue same, stage same, team_values same, motives same, expertice same , founds use (for the startup in the investor expertice ),
 
 industry:
 

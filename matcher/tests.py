@@ -57,6 +57,7 @@ def matching():
                 continue
             else:
                 score = 50
+                # team values filter
                 if len(common_values) >= 3:
                     score += 10
                 if startup.financial_tables:
@@ -64,17 +65,20 @@ def matching():
                 motives_stp = set(startup.team_motives)
                 motive_inv = set(investor.team_motives)
                 common_motives = motives_stp.intersection(motive_inv)
+                #team_motives filter
                 if len(common_motives) > 0:
                     score += 10
                 expertice_stp = set(startup.investor_expertise)
                 expertice_inv = set(investor.investor_expertise)
                 common_expertice = expertice_stp.intersection(expertice_inv)
+                #expertice filter
                 if len(common_expertice) > 0:
                     score += 5
                     if len(common_expertice)>3:
                         score +=5
                 founds_use_stp = set(startup.use_of_funds.keys())
                 use_founds_intersect=expertice_inv.intersection(founds_use_stp)
+                #use of found filter
                 if len(use_founds_intersect) > 0:
                     score += 5
                 matches.append((startup, investor, score))
