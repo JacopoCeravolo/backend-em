@@ -1,13 +1,12 @@
-
 INVESTOR MAPPING VALUES 
 
 
 
 
 
-'industry' same, 'type_of_business' same, 'type_of_investment' same , sdg same, capital same, impact_value same, lingue same, stage same, team_values same, motives same, expertice same , founds use (for the startup in the investor expertice ),
+'industry ' same ok, 'type_of_business' same ok, 'type_of_investment' same ok , sdg same ok, capital same ok, impact_value same ok, lingue same ok, stage same ok, team_values same ok, motives same ok, expertice same ok, founds use (for the startup in the investor expertice ) ok,
 
-industry:
+industry:  ok
 
 Real estate
 Nature protection
@@ -34,7 +33,7 @@ Environmental Consulting
 Other
 
 
-type_of business:
+type_of business:  ok
 
 B2B
 B2C
@@ -42,26 +41,7 @@ Consultancy
 All
 
 
-expectation:
-
-Accounting / Bookkeeping
-Controlling
-Fundraising
-HR / Personnel
-Legal / Legal Affairs
-Logistics / Logistics
-Management
-Marketing
-PR
-Procurement / Purchasing
-Product Development
-Production
-Sales / Distribution
-Strategy
-Technology
-
-
-languages:
+languages:  ok
 
 English
 german
@@ -72,7 +52,7 @@ Chinese
 Arabic
 
 
-team values:
+team values:  ok
 
 Sustainability
 Customer Orientation
@@ -98,7 +78,7 @@ Flexibility and adaptability
 Win-win-mentality
 
 
-stage:
+stage:    ok
 
 Pre-Seed Phase
 Seed Stage
@@ -114,7 +94,7 @@ Consultancy
 All
 
 
-expertice:
+expertice:  ok
 
 Accounting / Bookkeeping
 Controlling
@@ -134,7 +114,7 @@ Technology
 
 
 
-market:
+market:    ok
 
 Europe
 National
@@ -145,7 +125,7 @@ Amerika
 african country selection
 
 
-type of investment:
+type of investment:    ok
 
 Equity
 Loan
@@ -157,7 +137,44 @@ clear and quick exit
 A long-term exit
 no exit
 
+team_values:
 
+extravagant  
+Romantic  
+Security
+activating  
+Charming  
+Clarity
+risk
+Friendly
+Functional
+daring
+Soft  
+Diligent
+youthful  
+Cosy  
+Competence
+adventure  
+Health  
+Disciplined
+festive  
+Gentle  
+Powerful
+vivid  
+Security  
+Force
+joy  
+Down to earth  
+Superior
+indulgence  
+Trust  
+Status
+open-minded  
+Reliable  
+Exclusive
+Openness  
+Traditional  
+Responsibility
 
 VCs:
 Business Angel

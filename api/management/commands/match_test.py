@@ -1,4 +1,3 @@
-
 # for the testing of the alghorithm:
 # python3 manage.py shell
 # copy all the code of this file and paste it into the shell
@@ -44,7 +43,7 @@ class Command(BaseCommand):
                 lan_stp = set(startup.team_languages)
                 common_languages = lan_inv.intersection(lan_stp)
                 # filtro capital
-                if  startup.capital in range(investor.capital):
+                if  int(startup.capital) >= int(investor.capital):
                     print(f'(3) - capital filter not passed:\n. Investor: {investor}, {investor.capital} \n. Startup: {startup} {startup.capital}\n')
                     continue
                 # filtro lingue
