@@ -1,0 +1,158 @@
+'industry', 'type_of_business', 'type_of_investment', sdg, capital, impact_value, lingue, stage, team_values
+
+industry:
+
+Real estate
+Nature protection
+Woman Empowerment
+Poverty alleviation
+Greentech
+Smart City
+Mobility
+Energy
+Education
+Health
+Sports
+Cosmetics
+Financial & Insurance
+Food
+Legal
+Rental & Repair
+Transportation & storage
+Information & Communication
+Arts, entertainment & recreation
+Support services
+Technical services
+Environmental Consulting
+Other
+
+
+type_of business:
+
+B2B
+B2C
+Consultancy
+All
+
+
+expectation:
+
+Accounting / Bookkeeping
+Controlling
+Fundraising
+HR / Personnel
+Legal / Legal Affairs
+Logistics / Logistics
+Management
+Marketing
+PR
+Procurement / Purchasing
+Product Development
+Production
+Sales / Distribution
+Strategy
+Technology
+
+
+languages:
+
+English
+german
+French
+Italliano
+Spanish
+Chinese
+Arabic
+
+
+team values:
+
+Sustainability
+Customer Orientation
+Efficiency
+Collaboration
+Common good
+Value-oriented
+Engagement
+Transparency
+Ethical Behavior
+Punctuality
+Quickness
+Ethics
+Integrity
+Openness to innovation
+Support and network
+Risk-taking
+Transparency
+Trust
+Long-term focus
+Social responsability
+Flexibility and adaptability
+Win-win-mentality
+
+
+stage:
+
+Pre-Seed Phase
+Seed Stage
+Pre-Series A
+Series A
+Pre-Series B
+Series B
+Series C
+Bridge
+B2B
+B2C
+Consultancy
+All
+
+
+expertice:
+
+Accounting / Bookkeeping
+Controlling
+Fundraising
+HR / Personnel
+Legal / Legal Affairs
+Logistics / Logistics
+Management
+Marketing
+PR
+Procurement / Purchasing
+Product Development
+Production
+Sales / Distribution
+Strategy
+Technology
+
+
+
+market:
+
+Europe
+National
+English market
+french market
+Asia
+Amerika
+african country selection
+
+
+type of investment:
+
+Equity
+Loan
+Convertible Loan
+
+
+exit strategy:
+clear and quick exit
+A long-term exit
+no exit
+
+
+
+VCs:
+Business Angel
+Foundation
+Family Office

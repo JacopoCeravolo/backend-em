@@ -73,7 +73,7 @@ class Investor(models.Model):
     
     
     # Financial Information
-    capital = models.CharField(max_length=255)
+    capital = models.JSONField()
     stage = models.JSONField()
     
     # Impact Information
