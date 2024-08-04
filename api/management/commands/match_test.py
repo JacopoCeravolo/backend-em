@@ -89,7 +89,7 @@ class Command(BaseCommand):
                     if len(use_founds_intersect) > 0:
                         score += 5
                     matches.append((startup, investor, score))
-        print(f'\n.------MATCHES------.\n\n {matches}')
+        print(f'\n.------MATCHES NUMBER: {len(matches)} ------.\n\n {matches}')
 
         self.stdout.write(self.style.SUCCESS('Successfully created Investors'))
         
