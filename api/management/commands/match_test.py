@@ -10,9 +10,7 @@ from users.models import CustomUser
 # investitori filtrati su industria,type of busines stage e type of investement
 
 class Command(BaseCommand):
-    help = 'Initialize an Investor instance with meaningful data'
-    investors = list(Investor.objects.all())
-    matches =[]
+    
     def handle(self, *args, **kwargs):
         investors = list(Investor.objects.all())
         matches =[]
