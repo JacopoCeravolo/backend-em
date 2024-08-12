@@ -190,7 +190,7 @@ EMAIL_HOST = 'smtp.sendgrid.net'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'apikey' # Name for all the SenGrid accounts
-EMAIL_HOST_PASSWORD = ""
+EMAIL_HOST_PASSWORD = "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"
 
 # The email you'll be sending emails from
 DEFAULT_FROM_EMAIL = "jacopo@earthmates.de"

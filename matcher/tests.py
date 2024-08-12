@@ -44,7 +44,7 @@ class Command(BaseCommand):
                 lan_stp = set(startup.team_languages)
                 common_languages = lan_inv.intersection(lan_stp)
                 # filtro capital
-                if  startup.capital in range(investor.capital):
+                if  startup.capital <= investor.capital:
                     print(f'(3) - capital filter not passed:\n. Investor: {investor}, {investor.capital} \n. Startup: {startup} {startup.capital}\n')
                     continue
                 # filtro lingue
@@ -93,6 +93,10 @@ class Command(BaseCommand):
                         score += 5
                     matches.append((startup, investor, score))
         print(f'\n.------MATCHES------.\n\n {matches}')
+        for match in matches:
+            Matching.objects.create(startup_user = match[0], investor_user = match[1], score= match[2])
+        print('--------------------------------')
+        print(Matching.objects.all())
 
-        self.stdout.write(self.style.SUCCESS('Successfully created Investors'))
+        # self.stdout.write(self.style.SUCCESS('Successfully created Investors'))
         

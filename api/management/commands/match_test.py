@@ -10,7 +10,7 @@ from users.models import CustomUser
 # investitori filtrati su industria,type of busines stage e type of investement
 
 class Command(BaseCommand):
-    
+
     def handle(self, *args, **kwargs):
         investors = list(Investor.objects.all())
         matches =[]
@@ -41,7 +41,7 @@ class Command(BaseCommand):
                 lan_stp = set(startup.team_languages)
                 common_languages = lan_inv.intersection(lan_stp)
                 # filtro capital
-                if  int(startup.capital) >= int(investor.capital):
+                if  startup.capital >= investor.capital:
                     print(f'(3) - capital filter not passed:\n. Investor: {investor}, {investor.capital} \n. Startup: {startup} {startup.capital}\n')
                     continue
                 # filtro lingue
@@ -88,8 +88,12 @@ class Command(BaseCommand):
                     #use of found filter
                     if len(use_founds_intersect) > 0:
                         score += 5
-                    matches.append((startup, investor, score))
-        print(f'\n.------MATCHES NUMBER: {len(matches)} ------.\n\n {matches}')
+                    matches.append((startup.user, investor.user, score))
+        print(f'\n.------MATCHES------.\n\n {matches}')
+        for match in matches:
+            Matching.objects.create(startup_user = match[0], investor_user = match[1], match_score= match[2])
+        print('--------------------------------')
+        print(Matching.objects.all())
 
         self.stdout.write(self.style.SUCCESS('Test succesfully completed!'))
         

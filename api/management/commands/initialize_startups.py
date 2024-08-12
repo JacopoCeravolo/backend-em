@@ -37,16 +37,16 @@ class Command(BaseCommand):
                 "product_description": "Solar panels and wind turbines.",
                 "customer_problem": "Lack of affordable green energy options.",
                 "usp": "Low-cost, high-efficiency solar solutions.",
-                "capital": 2000000, # max value 1000000
+                "capital": 2000000, 
                 "stage": "Series A",
                 "target_investor_n": 4,
-                "use_of_funds": {"R&D": 40, "Marketing": 30, "Operations": 30}, # the sum of the keys must be 100
+                "use_of_funds": {"R&D": 40, "Marketing": 30, "Operations": 30}, 
                 "financial_tables": "Financial data here.",
                 "already_invested_n": 3,
                 "impact_value": 9.0,
                 "team_values": ["Integrity", "Innovation"],
                 "team_motives": ["Resource Management"],
-                "funding_experience": 'Yes',# or No
+                "funding_experience": 'Yes',
                 "team_languages": ["English"],
                 "investor_expertise": ["Management", "HR"],
                 "investor_expectations": ["has a big network"],
@@ -57,7 +57,7 @@ class Command(BaseCommand):
                     "SDG 7": "Affordable and Clean Energy",
                     "SDG 13": "Climate Action",
                     'SDG 6': 'Clean Water and Sanitation',
-                }# sdg field must contain only sdg goals values
+                }
             },
             
             {

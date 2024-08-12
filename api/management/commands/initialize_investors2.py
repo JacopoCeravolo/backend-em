@@ -13,7 +13,7 @@ class Command(BaseCommand):
             {
             'company_name': 'Eco Ventures',
             'location': 'San Francisco, CA',
-            'industry': 'Real Estate',# mapped
+            'industry': 'Real Estate',
             'type_of_business': 'B2B', # B2B or B2C 
             'linkedin': 'https://linkedin.com/company/ecovenures',
             'twitter': 'https://twitter.com/ecovenures',

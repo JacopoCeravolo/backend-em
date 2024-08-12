@@ -73,7 +73,7 @@ class Investor(models.Model):
     
     
     # Financial Information
-    capital = models.JSONField()
+    capital = models.FloatField()
     stage = models.JSONField()
     
     # Impact Information

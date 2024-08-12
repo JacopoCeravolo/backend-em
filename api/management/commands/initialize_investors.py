@@ -15,7 +15,7 @@ class Command(BaseCommand):
 
         investor_data = [
         {
-            'company_name': 'Eco Ventures',
+            'company_name': 'Cherry ventures',
             'location': 'San Francisco, CA',
             'industry': 'Real Estate',
             'type_of_business': 'B2B', # B2B or B2C 

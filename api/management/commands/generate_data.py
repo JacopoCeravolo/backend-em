@@ -388,7 +388,10 @@ class Command(BaseCommand):
                 'exit_strategy': 'IPO',
                 'type_of_investment': random.choice(type_of_investment),
                 'market': 'Global water conservation sector',
-                'sdg': {sdg_format[0]: sdg_goals[sdg_format[0]], sdg_format[1]: sdg_goals[sdg_format[1]], sdg_format[2]: sdg_goals[sdg_format[2]],  sdg_format[3]: sdg_goals[sdg_format[3]], sdg_format[4]: sdg_goals[sdg_format[4]], sdg_format[5]: sdg_goals[sdg_format[5]], sdg_format[6]: sdg_goals[sdg_format[6]],  sdg_format[7]: sdg_goals[sdg_format[7]]}  # sdg must be in the sdg goals
+                'sdg': {sdg_format[0]: sdg_goals[sdg_format[0]], sdg_format[1]: sdg_goals[sdg_format[1]], sdg_format[2]: sdg_goals[sdg_format[2]],  
+                        sdg_format[3]: sdg_goals[sdg_format[3]], sdg_format[4]: sdg_goals[sdg_format[4]], sdg_format[5]: sdg_goals[sdg_format[5]], 
+                        sdg_format[6]: sdg_goals[sdg_format[6]],  sdg_format[7]: sdg_goals[sdg_format[7]]
+                        }  # sdg must be in the sdg goals
             }
             investor_data.append(investor_sample)
 
@@ -430,7 +433,10 @@ class Command(BaseCommand):
                 "exit_strategy": "IPO",
                 "type_of_investment": random.choice(type_of_investment),
                 "market": "Global energy market.",
-                "sdg": {sdg_format[0]: sdg_goals[sdg_format[0]], sdg_format[1]: sdg_goals[sdg_format[1]], sdg_format[2]: sdg_goals[sdg_format[2]],  sdg_format[3]: sdg_goals[sdg_format[3]], sdg_format[4]: sdg_goals[sdg_format[4]], sdg_format[5]: sdg_goals[sdg_format[5]], sdg_format[6]: sdg_goals[sdg_format[6]],  sdg_format[7]: sdg_goals[sdg_format[7]]}, 
+                "sdg": {sdg_format[0]: sdg_goals[sdg_format[0]], sdg_format[1]: sdg_goals[sdg_format[1]], sdg_format[2]: sdg_goals[sdg_format[2]],
+                          sdg_format[3]: sdg_goals[sdg_format[3]], sdg_format[4]: sdg_goals[sdg_format[4]], sdg_format[5]: sdg_goals[sdg_format[5]], 
+                          sdg_format[6]: sdg_goals[sdg_format[6]],  sdg_format[7]: sdg_goals[sdg_format[7]]
+                          }, 
                 }
             startups_data.append(startup_sample)
 
