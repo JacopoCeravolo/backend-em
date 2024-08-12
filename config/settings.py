@@ -20,12 +20,17 @@ environ.Env.read_env() # Reads the .env file
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+from dotenv import load_dotenv
+import os
+load_dotenv()
+SECRET_KEY = os.getenv('SECRET_KEY')
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-b2+(0(8)3&s3%4#w=ro+p^%6wxm1q=2%jhies$(f2$lpkll0dx'
+# SECRET_KEY = 'django-insecure-b2+(0(8)3&s3%4#w=ro+p^%6wxm1q=2%jhies$(f2$lpkll0dx'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -190,7 +195,7 @@ EMAIL_HOST = 'smtp.sendgrid.net'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'apikey' # Name for all the SenGrid accounts
-EMAIL_HOST_PASSWORD = "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"
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 
 # The email you'll be sending emails from
 DEFAULT_FROM_EMAIL = "jacopo@earthmates.de"

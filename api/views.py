@@ -7,7 +7,7 @@ from api.serializers import StartupSerializer, InvestorSerializer
 from rest_framework import generics
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.decorators import api_view, permission_classes
-from matcher.utils import main_matching_algo_inv, main_match_algo_stp
+from matcher.utils import main_matching_algo_inv, main_matching_algo_stp
 
 from .models import Startup, Investor
 
@@ -34,6 +34,8 @@ class StartupCreate(generics.ListCreateAPIView):
     
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
+
+        main_matching_algo_stp(startup=Startup.objects.filter(user=self.request.user)[0])
 
 #api/startup/delete/<int:pk>  
 class StartupDelete(generics.DestroyAPIView):

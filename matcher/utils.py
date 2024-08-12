@@ -8,7 +8,7 @@ from users.models import CustomUser
 def main_matching_algo_inv(investor, *args, **kwargs, ):
         # investors = list(Investor.objects.all())
         
-        matches =[]
+        match = None
         i = 0
         print(f'\n-----------Investor n.{i}-----------\n')
         # filtri su: 'industry', 'type_of_business', 'type_of_investment'
@@ -82,14 +82,16 @@ def main_matching_algo_inv(investor, *args, **kwargs, ):
                 #use of found filter
                 if len(use_founds_intersect) > 0:
                     score += 5
-                matches.append((startup.user, investor.user, score))
-        print(f'\n.------MATCHES NUMBER: {len(matches)} ------.\n\n {matches}')
+                match = (startup.user, startup.name, investor.user , investor.company_name, score)
+        print(f'\n.------MATCHES NUMBER: {len(match)} ------.\n\n {match}')
+        if match:
+            Matching.objects.create(startup_user = match[0], startup_name = match[1], investor_name = match[3],investor_user = match[2], match_score= match[4])
+            print('--------------------------------')
+            print(Matching.objects.all())
 
 
-
-def main_match_algo_stp(startup, *args, **kwargs):
-        investors = list(Investor.objects.all())
-        matches =[]
+def main_matching_algo_stp(startup, *args, **kwargs):
+        match =None
         i = 0
         print(f'\n-----------Investor n.{i}-----------\n')
         # filtri su: 'industry', 'type_of_business', 'type_of_investment'
@@ -163,9 +165,9 @@ def main_match_algo_stp(startup, *args, **kwargs):
                 #use of found filter
                 if len(use_founds_intersect) > 0:
                     score += 5
-                matches.append((startup.user, investor.user, score))
-        print(f'\n.------MATCHES------.\n\n {matches}')
-        for match in matches:
-            Matching.objects.create(startup_user = match[0], investor_user = match[1], match_score= match[2])
-        print('--------------------------------')
-        print(Matching.objects.all())
+                match = (startup.user, startup.name, investor.user , investor.company_name, score)
+        print(f'\n.------MATCHES NUMBER: {len(match)} ------.\n\n {match}')
+        if match:
+            Matching.objects.create(startup_user = match[0], startup_name = match[1], investor_name = match[3],investor_user = match[2], match_score= match[4])
+            print('--------------------------------')
+            print(Matching.objects.all())

@@ -180,3 +180,49 @@ VCs:
 Business Angel
 Foundation
 Family Office
+
+
+
+
+
+startup da inserire su postman su /api/startup/ dopo aver autenticato l'utente
+
+questa startup crea un match con UrbanGrid Systems (investor)
+
+se si è autenticati con la mail corrispondente a questa startup se si va su /matcher/match/ si vedrà il macth corrispondente 
+{
+    "name": "Rumoza Analytics",
+    "code": "GI101",
+    "location": "Austin, TX",
+    "industry": "Woman Empowerment",
+    "founding_date": "2023-04-15",
+    "legal_form": "Corporation",
+    "type_of_business": "All",
+    "website": "https://greeninnovate.com",
+    "facebook": "https://facebook.com/greeninnovate",
+    "linkedin": "https://linkedin.com/company/greeninnovate",
+    "twitter": "https://twitter.com/greeninnovate",
+    "description": "Pioneering renewable energy solutions.",
+    "mission": "To empower sustainable living.",
+    "product_description": "Solar panels and wind turbines.",
+    "customer_problem": "Lack of affordable green energy options.",
+    "usp": "Low-cost, high-efficiency solar solutions.",
+    "capital": 29470.0, 
+    "stage": "Series B",
+    "target_investor_n": 4,
+    "use_of_funds": {"R&D": 40, "Marketing": 30, "Operations": 30} ,
+    "financial_tables": "Financial data here.",
+    "already_invested_n": 3,
+    "impact_value": 8.0,
+    "team_values": ["Ethical Behavior", "Social responsability", "Customer Orientation", "Risk-taking"],
+    "team_motives":["Status", "Diligent", "activating", "Romantic"],
+    "funding_experience": "Yes",
+    "team_languages": ["Chinese", "German", "French"],
+    "investor_expertise": ["Product Development", "Controlling", "Legal / Legal Affairs", "Technology", "Marketing", "Logistics / Logistics"],
+    "investor_expectations": ["has a big network"],
+    "exit_strategy": "IPO",
+    "type_of_investment": "Equity",
+    "market": "Global energy market.",
+    "sdg":{"SDG-15": "Life on Land", "SDG-8": "Decent Work and Economic Growth", "SDG-6": "Clean Water and Sanitation", "SDG-13": "Climate Action", "SDG-12": "Responsible Consumption and Production", "SDG-11": "Sustainable Cities and Communities", "SDG-2": "Zero Hunger", "SDG-7": "Affordable and Clean Energy"},
+    "user": 365
+}

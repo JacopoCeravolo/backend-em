@@ -10,8 +10,8 @@ from rest_framework.response import Response
 
 class MatchesView(generics.ListCreateAPIView):
     serializer_class = MatchSerializer
-    permission_classes = [AllowAny]
+    permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
         user = self.request.user
-        return Matching.objects.all()
+        return Matching.objects.filter(startup_user = user)
