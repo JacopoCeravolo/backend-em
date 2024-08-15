@@ -20,10 +20,10 @@ environ.Env.read_env() # Reads the .env file
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 import os
-load_dotenv()
-SECRET_KEY = os.getenv('SECRET_KEY')
+#load_dotenv()
+SECRET_KEY = "z785@#1ldv26$*34(crtnu^6snucxq%3_1f5qnd^py)!%m1@a)"
 
 
 # Quick-start development settings - unsuitable for production
