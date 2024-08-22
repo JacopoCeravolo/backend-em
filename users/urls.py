@@ -17,3 +17,4 @@ urlpatterns = [
     # path('check-email/', CheckEmailView.as_view(), name="check_email"),
     # path('success/', SuccessView.as_view(), name="success"),
 ]
+#pbkdf2_sha256$720000$KUG5xOio8NoUBmkG1zVYbe$9QASSjcIWast3KlEGzQi4WVpUxiGfi+JStFG4PO03mM=

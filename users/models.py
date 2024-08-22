@@ -1,6 +1,7 @@
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.db import models
 from django.utils import timezone
+from api.models import Startup, Investor
 
 
 class UserManager(BaseUserManager):
@@ -43,6 +44,8 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     last_login = models.DateTimeField(null=True, blank=True)
     date_joined = models.DateTimeField(auto_now_add=True)
     cover_photo = models.ImageField(upload_to='covers/', null=True, blank=True)
+    startup = models.OneToOneField(Startup, on_delete=models.SET_NULL, null=True, blank=True, related_name='user_startup')
+    investor = models.OneToOneField(Investor, on_delete=models.SET_NULL, null=True, blank=True, related_name='user_investor')
     
 
     USERNAME_FIELD = 'email'
@@ -53,3 +56,6 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
     def get_absolute_url(self):
         return "/users/%i/" % (self.pk)
+    
+    def get_email(self):
+        return self.email
