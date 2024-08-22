@@ -24,6 +24,13 @@ from .views import (
     StartupPreferencesView,
 )
 
+from .views import (
+    InvestorRetrieveUpdateView,
+    InvestorCreateView,
+    InvestorPreferencesView,
+    InvestorPortfolioView
+)
+
 urlpatterns = [
     path('startup/', StartupRetrieveUpdateView.as_view(), name='get_update_startup'),
     path('startup/create/', StartupCreateView.as_view(), name='create_startup'),
@@ -34,18 +41,11 @@ urlpatterns = [
     path('startup/team/', StartupTeamView.as_view(), name='get_update_startup_team'),
     path('startup/market/', StartupMarketView.as_view(), name='get_update_startup_market'),
     path('startup/preferences/', StartupPreferencesView.as_view(), name='get_update_startup_preferences'),
-]
-
-from .views import (
-    InvestorRetrieveUpdateView,
-    InvestorCreateView,
-    InvestorPreferencesView,
-    InvestorPortfolioView
-)
-
-urlpatterns = [
     path('investor/', InvestorRetrieveUpdateView.as_view(), name='get_update_investor'),
     path('investor/create/', InvestorCreateView.as_view(), name='create_investor'),
     path('investor/preferences/', InvestorPreferencesView.as_view(), name='get_update_investor_preferences'),
     path('investor/portfolio/', InvestorPortfolioView.as_view(), name='get_update_investor_portfolio'),
 ]
+
+
+
