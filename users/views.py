@@ -1,5 +1,5 @@
 from .models import CustomUser
-from .serializers import MyTokenObtainPairSerializer, RegisterSerializer, EmailConfirmationSerializer
+from .serializers import CustomUserSerializer, MyTokenObtainPairSerializer, RegisterSerializer, EmailConfirmationSerializer
 from .utils import Util
 
 from rest_framework.decorators import api_view
@@ -107,3 +107,11 @@ class CheckEmailView(TemplateView):
 
 class SuccessView(TemplateView):
     template_name = 'users/success.html'
+
+class CustomerUserRetrieve(generics.RetrieveUpdateAPIView):
+    queryset = CustomUser.objects.all()
+    serializer_class = CustomUserSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_object(self):
+        return self.request.user

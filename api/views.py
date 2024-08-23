@@ -77,6 +77,7 @@ class StartupOfferingView(generics.RetrieveUpdateAPIView):
 
     def get_object(self):
         return self.request.user.startup.offerings
+    
 
 class StartupFinancialsView(generics.RetrieveUpdateAPIView):
     queryset = StartupFinancials.objects.all()

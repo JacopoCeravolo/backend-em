@@ -14,6 +14,7 @@ urlpatterns = [
     path('register/', views.RegisterView.as_view(), name='auth_register'),
     path('', views.getRoutes),
     path('activate/<uidb64>/<token>/', ActivateView.as_view(), name="activate"),        # Return view from the email sended to the user
+    path('retrieve/', views.CustomerUserRetrieve.as_view(), name='retrieve')
     # path('check-email/', CheckEmailView.as_view(), name="check_email"),
     # path('success/', SuccessView.as_view(), name="success"),
 ]

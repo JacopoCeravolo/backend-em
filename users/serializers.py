@@ -7,7 +7,10 @@ from .models import CustomUser
 from django.core.validators import FileExtensionValidator
 
 
-
+class CustomUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CustomUser
+        fields = "__all__"
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     @classmethod

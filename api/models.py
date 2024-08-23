@@ -5,11 +5,10 @@ class StartupDetails(models.Model):
     startup = models.OneToOneField('Startup', on_delete=models.CASCADE, related_name='details_section')
     company_address = models.CharField(max_length=255)
     company_code = models.CharField(max_length=50)
-    company_city = models.CharField(max_length=100)
     mission = models.TextField()
     industry = models.CharField(max_length=100)
     legal_form = models.CharField(max_length=50)
-    target_group = models.TextField()
+    target_group = models.JSONField()
     founding_date = models.DateField()
     website_url = models.URLField()
     linkedin_url = models.URLField(blank=True, null=True)
@@ -55,11 +54,11 @@ class StartupMarket(models.Model):
 
 class StartupMatchingPreferences(models.Model):
     startup = models.OneToOneField('Startup', on_delete=models.CASCADE, related_name='preferences_section')
-    investor_type = models.CharField(max_length=100)
-    investor_qualities = models.TextField()
-    investment_instrument = models.CharField(max_length=100)
-    exit_strategy = models.CharField(max_length=100)
-    investor_expertise = models.TextField()
+    investor_type = models.JSONField()
+    investor_qualities = models.JSONField()
+    investment_instrument = models.JSONField()
+    exit_strategy = models.JSONField()
+    investor_expertise = models.JSONField()
 
 class Startup(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='user_startup')
