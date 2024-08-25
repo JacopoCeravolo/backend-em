@@ -163,3 +163,8 @@ class InvestorPortfolioView(generics.RetrieveUpdateAPIView):
 
     def get_object(self):
         return self.request.user.investor.portfolio
+    
+from django.shortcuts import render
+
+def profile(request):
+    return render(request, 'profile.html')
