@@ -61,7 +61,6 @@ class StartupMatchingPreferences(models.Model):
     investor_expertise = models.JSONField()
 
 class Startup(models.Model):
-    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='user_startup')
     name = models.CharField(max_length=255)
     details = models.OneToOneField(StartupDetails, on_delete=models.CASCADE, related_name='startup_details', null=True, blank=True)
     offerings = models.OneToOneField(StartupOffering, on_delete=models.CASCADE, related_name='startup_offerings', null=True, blank=True)
@@ -92,7 +91,6 @@ class InvestorPortfolio(models.Model):
     previously_invested = models.JSONField()
     
 class Investor(models.Model):
-    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='user_investor')
     name = models.CharField(max_length=255)
     preferences = models.OneToOneField(InvestorPreferences, on_delete=models.CASCADE, related_name='investor_preferences', null=True, blank=True)
     portfolio =  models.OneToOneField(InvestorPortfolio, on_delete=models.CASCADE, related_name='investor_porfolio', null=True, blank=True)
